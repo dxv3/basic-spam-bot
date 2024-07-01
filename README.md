@@ -13,12 +13,12 @@ A versatile Discord bot for spamming messages using user tokens and webhooks. Fe
 
 use `|` to separate commands.
 
-dxv3send [channel_id] [cmds] [-loop]
-dxv3stop
-dxv3webhook [channel_id] [webhook_name] [amount]
-dxv3hookspam [webhook_id] [messages] [-loop]
-dxv3spamall [channel_id] [messages] [-loop]
-dxv3h
+dxv3send [channel_id] [cmds] [-loop]  
+dxv3stop  
+dxv3webhook [channel_id] [webhook_name] [amount]  
+dxv3hookspam [webhook_id] [messages] [-loop]  
+dxv3spamall [channel_id] [messages] [-loop]  
+dxv3h  
 
 replace BOT_TOKEN on line 8 
 put tokens in tokens.txt
