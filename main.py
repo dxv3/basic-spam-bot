@@ -5,6 +5,8 @@ import aiohttp
 import requests
 import time
 
+BOT_TOKEN = ""
+
 def read_tokens(file_path):
     with open(file_path, 'r') as file:
         tokens = [line.strip() for line in file.readlines() if line.strip()]
@@ -45,17 +47,16 @@ class DiscordWebhookManager:
                 "name": webhook_name
             }
             self.webhooks.append(webhook)
-            print(f"[+] Webhook '{webhook_name}' created successfully.")
+            print(f"[+] webhook '{webhook_name}' created successfully.")
         except requests.exceptions.HTTPError as errh:
-            print(f"[!] Failed to create webhook: {errh}")
+            print(f"[!] failed to create webhook: {errh}")
         except requests.exceptions.RequestException as err:
-            print(f"[!] Request Exception: {err}")
+            print(f"[!] request exception: {err}")
 
     def send_message(self, webhook_url, message):
         try:
             response = requests.post(webhook_url, json={"content": message})
             response.raise_for_status()
-            print("[+] Message sent successfully.")
         except requests.exceptions.HTTPError as errh:
             print(f"[!] HTTP Error: {errh}")
         except requests.exceptions.RequestException as err:
@@ -65,11 +66,11 @@ class DiscordWebhookManager:
         try:
             response = requests.delete(webhook_url)
             response.raise_for_status()
-            print("[+] Webhook deleted successfully.")
+            print("[+] webhook deleted successfully")
         except requests.exceptions.HTTPError as errh:
-            print(f"[!] HTTP Error: {errh}")
+            print(f"[!] HTTP error: {errh}")
         except requests.exceptions.RequestException as err:
-            print(f"[!] Request Exception: {err}")
+            print(f"[!] request exception: {err}")
 
     def rename_webhook(self, webhook_url, new_name):
         url = f"{webhook_url}"
@@ -83,30 +84,30 @@ class DiscordWebhookManager:
         try:
             response = requests.patch(url, headers=headers, json=json_data)
             response.raise_for_status()
-            print(f"[+] Webhook renamed to '{new_name}' successfully.")
+            print(f"[+] webhook renamed to '{new_name}' successfully.")
         except requests.exceptions.HTTPError as errh:
-            print(f"[!] HTTP Error: {errh}")
+            print(f"[!] HTTP error: {errh}")
         except requests.exceptions.RequestException as err:
-            print(f"[!] Request Exception: {errh}")
+            print(f"[!] request exception: {errh}")
 
     def spam_webhooks(self, webhook_ids, messages, loop=False):
         if not self.webhooks:
-            print("[!] No webhooks available. Please create a webhook first.")
+            print("[!] no webhooks available! make a webhook first lmao")
             return
         
         try:
-            print("[!] Spam has started. Press Ctrl+C to stop.")
+            print("[!] spam has started. ctrl+c or dxv3stop in discord to stop")
             while True:
                 for webhook_id in webhook_ids:
                     webhook = next((wh for wh in self.webhooks if wh["id"] == webhook_id), None)
                     if webhook:
                         response = requests.post(webhook["url"], json={"content": messages})
                         response.raise_for_status()
-                        print(f"[+] Sent message to '{webhook['name']}'")
+                        print(f"[+] sent message to '{webhook['name']}'")
                         if not loop:
                             break
                     else:
-                        print(f"[!] Webhook with ID {webhook_id} not found.")
+                        print(f"[!] webhook with ID {webhook_id} not found.")
                 if not loop:
                     break
                 time.sleep(0.5)  # <---- DELAY BETWEEN MSGS
@@ -245,7 +246,6 @@ async def dxv3spamall(ctx, channel_id: int, *, cmds_and_loop: str):
     async def send_with_webhook(webhook_url, cmd):
         try:
             webhook_manager.send_message(webhook_url, cmd)
-            print("[+] msg sent successfully via webhook.")
         except requests.exceptions.HTTPError as errh:
             print(f"[!] HTTP error: {errh}")
         except requests.exceptions.RequestException as err:
@@ -308,4 +308,4 @@ async def dxv3h(ctx):
 
     await ctx.send(embed=embed)
 
-bot.run('bot_token_here')
+bot.run('BOT_TOKEN')
