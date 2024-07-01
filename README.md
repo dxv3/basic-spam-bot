@@ -7,7 +7,7 @@ basic bot for spamming messages using user tokens and webhooks(needs some fixing
 use `|` to separate commands   
 add `-loop` at the end of cmd to loop it   
 
-dxv3send [channel_id] [cmds]
+dxv3send [channel_id] [cmds]  
 dxv3stop   
 dxv3webhook [channel_id] [webhook_name] [amount]  
 dxv3hookspam [webhook_id] [messages]  
