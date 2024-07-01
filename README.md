@@ -8,10 +8,10 @@ use `|` to separate commands
 add `-loop` at the end of cmd to loop it   
 
 dxv3send [channel_id] [cmds]  
-dxv3stop   
 dxv3webhook [channel_id] [webhook_name] [amount]  
 dxv3hookspam [webhook_id] [messages]  
 dxv3spamall [channel_id] [messages]  
+dxv3stop  
 dxv3h   
 
 replace `BOT_TOKEN` on line 8    
