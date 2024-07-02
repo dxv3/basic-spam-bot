@@ -12,7 +12,9 @@ add `-loop` at the end of cmd to loop it
 - dxv3hookspam [webhook_id] [messages]  
 - dxv3spamall [channel_id] [messages]  
 - dxv3stop  
-- dxv3h   
+- dxv3h
+
+e.g. dxv3send 1257329585213673497 hi | hi again | hi AGAIN!! -loop  
 
 replace `BOT_TOKEN` on line 8    
 put tokens in tokens.txt
