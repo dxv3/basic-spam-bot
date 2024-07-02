@@ -241,7 +241,7 @@ async def dxv3spamall(ctx, channel_id: int, *, cmds_and_loop: str):
             json_data = {"content": f"{cmd.strip()}"}
             async with session.post(url, headers=headers, json=json_data) as response:
                 if response.status != 200:
-                    await ctx.send(f"Failed to send message using user token: {response.status} {await response.text()}")
+                    await ctx.send(f"failed to send message using user token: {response.status} {await response.text()}")
 
     async def send_with_webhook(webhook_url, cmd):
         try:
@@ -268,14 +268,11 @@ async def dxv3spamall(ctx, channel_id: int, *, cmds_and_loop: str):
 
     if loop_flag:
         if looping:
-            await ctx.send("Already looping.")
             return
         looping = True
         task = asyncio.create_task(loop_messages())
-        await ctx.send("Started spamall loop.")
     else:
         await send_messages()
-        await ctx.send("Finished spamall.")
 
 
 @bot.command(name='h')
